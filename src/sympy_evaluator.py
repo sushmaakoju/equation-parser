@@ -4,7 +4,8 @@
 import numpy as np
 import sympy as sp
 import pandas as pd
-
+#give input equation
+expr = sp.sympify("x_1**2 + x_2*x_3")
 #get number of columns from X dataframe and y dataframe
 num_of_columns = 10+1 #dataframe features len(X.columns) +1
 num_of_y_columns = 2 #dataframe features len(Y.columns) +1
@@ -25,7 +26,7 @@ df = pd.DataFrame(
 variable_tuple = tuple([sp.var(s.name) for s in symbols[0:len(df.columns)]])
 
 #define the R.H.S of equation as user inputs and as parsed
-expr =  x_1**2 + x_2*x_3
+#expr =  x_1**2 + x_2*x_3
 #use lambdify with symbols that are actually created as variables and expression and 
 #package to be used
 f = sp.lambdify(variable_tuple, expr, 'numpy')
