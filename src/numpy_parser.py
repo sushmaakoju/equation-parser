@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
-import sympy_parser as sp
-from sympy_parser import *
+import sympy as sp
+from sympy import *
 #numpy polynomial evaluation
 #using x_i notation directly which is not real-world case anyway.
 df = pd.DataFrame(
