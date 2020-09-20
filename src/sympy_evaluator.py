@@ -4,6 +4,7 @@
 import numpy as np
 import sympy as sp
 import pandas as pd
+import sys
 #give input equation
 expr = sp.sympify("x_1**2 + x_2*x_3")
 #get number of columns from X dataframe and y dataframe
@@ -21,7 +22,10 @@ df = pd.DataFrame(
 	[32, 74, 56.6],
 	[52, 54, 76.2]],
     columns = ['feature1','feature2', 'feature3'])
-
+#create variables by setattr with dataframe's columns i.e. numpy arrays (series essentially arrays)
+mod = sys.modules[__name__]
+for i,c in enumerate(df.columns, start=1):
+	setattr(mod, "x"+str(i), df[c])
 #just create variables SymPy way and store it as a stuple for creating f_1(x) -> H_1(x)
 variable_tuple = tuple([sp.var(s.name) for s in symbols[0:len(df.columns)]])
 
@@ -32,7 +36,7 @@ variable_tuple = tuple([sp.var(s.name) for s in symbols[0:len(df.columns)]])
 f = sp.lambdify(variable_tuple, expr, 'numpy')
 #replace features in f(x_1,x_2,x_3) => map x_1, x_2, x_3 to x1,x2,x3
 #get all x1, x2, x3 values
-x1,x2,x3 = [df[c] for c in df.columns]
+#x1,x2,x3 = [df[c] for c in df.columns]
 #evaluate
 result = f(x1,x2,x3)
 print(result)
