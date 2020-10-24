@@ -10,6 +10,7 @@ df = pd.DataFrame(
 	[32, 74, 56.6],
 	[52, 54, 76.2]],
     columns = ['x1','x2', 'x3'])
-x0, x1, x2 = [df[c].to_numpy() for c in df.columns]
-expr =  x0**2 + x1*x2
+x1, x2, x3 = [df[c].to_numpy() for i,c in enumerate(df.columns, start=1)]
+#expr =  x0**2 + x1*x2
+expr = x1**2 + x2*x3
 print(expr)

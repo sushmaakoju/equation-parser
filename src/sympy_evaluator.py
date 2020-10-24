@@ -40,3 +40,7 @@ f = sp.lambdify(variable_tuple, expr, 'numpy')
 #evaluate
 result = f(x1,x2,x3)
 print(result)
+expr2 = sp.sympify("8*x_3/(pi * x_2^3)")
+f = sp.lambdify(symbols, expr2, 'numpy')
+result = f(symbols)
+print(result)
