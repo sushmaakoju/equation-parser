@@ -26,8 +26,9 @@ from exception import *
 #       c) Allowed operators are +, -, *, / and can occur multiple times.
 #       d) the operators are always seperated by digits or variables
 #       f) we need atleast one variable
-#7)We just evaluate the input equation for token validations (for terminals vs non-terminals),
-#       since most of production rules are implemented by SymPy. We use SymPy to evaluate equations.
+#7)We just evaluate the input equation for token validations (for terminals vs non-terminals) for production rules,
+#       but we use sympy which has its own production rules as well. We use SymPy to evaluate equations.
+#       we just need to know if the incoming equation is valid or not before parsing it through SymPy.
 #8)All variables defined are one-dimensional arrays. Here we represent using NumPy Arrays. 
 #       However these are extendable to TensorFlow arrays/matrices.
 
