@@ -7,18 +7,19 @@ import sys
 import numpy as np
 import sympy as sp
 import pandas as pd
-from pathlib import Path, PurePath
+from pathlib import Path
 from .tokens import *
 from .equation import *
 
 class Equations(Equation):
     def __init__(self):
-        path = Path(__file__).parent.parent
+        path = Path(__file__)
         self.filepath = path.joinpath("fixtures","equations.xlsx")
         self.equations_sheet = "equations"
         self.column_mapping_sheet = "col_var_mapping"     
-        self.data_sheet = "bottom_top_layer"  
-        self.mappings = None 
+        self.data_sheet = "values"  
+        self.mappings = None
+        self.df = None
         self.equations_df = pd.DataFrame()
         self.equations = dict()
         self.lhs = None
@@ -39,7 +40,7 @@ class Equations(Equation):
         for variable, equation in zip(self.lhs, eq_list):
             self.equations[variable] = Equation(equation, self.df)
             self.equations[variable].set_symbols(self.mappings)
-            self.values[variable] = self.equations[variable].evaluate()
+            self.values[variable] = self.equations[variable].evaluate(self.values)
         result_df = pd.DataFrame.from_dict(self.values)
-        #result_df.to_excel()
+        result_df.to_csv("results.csv", index=False)
         return self.values

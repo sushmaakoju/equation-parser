@@ -1,7 +1,9 @@
+from __future__ import absolute_import
+
 from enum import Enum
 import re
-import constants as const
-from exception import *
+from .constants import *
+from .exception import *
 
 #define formal grammar for polynomials equations
 #Attempt context-free grammar CFG: G=(N, Σ, P, S)
@@ -40,31 +42,6 @@ class TokenType(Enum):
 class Token(object):
     def __init__(self, text : str, index : int):
         self.input = text.strip()
-        self.index = index
-        self.kind = None
-
-        if re.fullmatch(const.INVALID_PATTERN, self.input):
-                raise InvalidInputTokenException()
-
-        if re.fullmatch(const.VARIABLE_PATTERN, self.input):
-                self.kind = TokenType.VARIABLE
-        elif re.fullmatch(const.NUMBER_PATTERN, self.input):
-                self.kind = TokenType.NUMBER
-        elif re.fullmatch(const.OPERATOR_PATTERN, self.input):
-                self.kind = TokenType.OPERATOR
-        else:
-                raise PatternMismatchException()
-        
-        
-
-class TokenType(Enum):
-    NUMBER = 1
-    VARIABLE = 2 #All X1, X2, X3 ...are IDENTIFERS may be SymPy arrays/matrices
-    OPERATOR = 3
-
-class Token(object):
-    def __init__(self, text : str, index : int):
-        self.input = text.strip()
         self.kind = None
 
     def is_valid_token(self):
@@ -87,11 +64,13 @@ class Token(object):
 class Tokens:
         def __init__(self, eq_str: str):
             pattern = re.compile(OPERATOR_PATTERN)
-            self.token_list = pattern.split(eq_str)
+            self.token_list = list(filter(None, pattern.split(eq_str)))
             self.tokens = dict()
         
         def validate(self):
             for i, token in enumerate(self.token_list):
+                if token == "":
+                    continue
                 t = Token(token, i)
                 try:
                     if t.is_valid_token():
