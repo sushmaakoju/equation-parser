@@ -82,3 +82,9 @@ class Tokens:
             if len(self.tokens) ==len(self.token_list):
                 return True
             return False
+        
+        def get_variables(self):
+            variable_tokens = [token.input for token in self.tokens.values() 
+                        if token.kind == TokenType.VARIABLE]
+            return variable_tokens
+            
