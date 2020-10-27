@@ -26,24 +26,26 @@ class Equation:
         self.result = None
     
     def set_symbols(self, columns_symbol_mappings):
+        self.symbols = []
+        self.columns_mappings = dict()
         if columns_symbol_mappings is None:
             #"x_1**2 + x_2*x_3")
             #get number of columns from X dataframe and y dataframe
             num_of_columns = len(self.X.columns)+1 #dataframe features len(X.columns) +1
-            #create equation variables as user prefers to enter like x_1 ** 2 + x_2 * x_3
-            symbols = sp.symarray('x',num_of_columns+1)
-            self.symbols = symbols[1:]
+            #create equation variables as user prefers to enter like x1 ** 2 + x2 * x3
+            self.symbols =  list(sp.symbols('x1:{}'.format(num_of_columns)))
+            for col, symbol in zip(self.X.columns.values, self.symbols): 
+                self.columns_mappings[str(symbol)] = str(symbol)
         else:
-            self.symbols = []
-            self.columns_mappings = dict()
             for col, symbol in zip(columns_symbol_mappings['column'], 
                         columns_symbol_mappings['variable']):                    
-                self.symbols.append(sp.symbols(symbol))
+                self.symbols.append(sp.Symbol(symbol))
                 self.columns_mappings[symbol] = col
 
     def evaluate(self, values):
         self.expression = sp.sympify(self.expr)
-        this_eq_symbols = [token for token in self.tokens.token_list if token in str(self.symbols)]
+        variable_tokens = self.tokens.get_variables()
+        this_eq_symbols = [token for token in variable_tokens if token in str(self.symbols)]
         #create variables SymPy way and store it as a stuple for creating f_1(x) -> H_1(x)
         variable_tuple = self.get_columns(this_eq_symbols, values)
         #define the R.H.S of equation as user inputs and as parsed

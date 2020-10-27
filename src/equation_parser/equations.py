@@ -13,7 +13,7 @@ from .equation import *
 
 class Equations(Equation):
     def __init__(self):
-        path = Path(__file__)
+        path = Path(__file__).parent
         self.filepath = path.joinpath("fixtures","equations.xlsx")
         self.equations_sheet = "equations"
         self.column_mapping_sheet = "col_var_mapping"     
@@ -25,13 +25,21 @@ class Equations(Equation):
         self.lhs = None
         self.values =  dict()
     
-    def upload_data_equations(self, filepath, equations_sheet, column_mapping_sheet, data_sheet):
-        if filepath != "":
-            self.filepath = filepath
-        #print(pd.read_excel(self.filepath, sheet_name=sheet, mangle_dupe_cols=True))
+    def upload_data_equations(self, filepath, equations_sheet, data_sheet, column_mapping_sheet=""):
+        if not self.validate_file_inputs(filepath, equations_sheet, data_sheet):
+            return False
+        self.filepath = filepath
         self.equations_df = pd.read_excel(self.filepath, sheet_name=equations_sheet, mangle_dupe_cols=True)
         self.df = pd.read_excel(self.filepath, sheet_name=data_sheet, mangle_dupe_cols=True)
-        self.mappings = pd.read_excel(self.filepath, sheet_name=column_mapping_sheet, mangle_dupe_cols=True)
+        if column_mapping_sheet:
+            self.mappings = pd.read_excel(self.filepath, sheet_name=column_mapping_sheet, mangle_dupe_cols=True)
+
+    def validate_file_inputs(self, filepath, equations_sheet, data_sheet):
+        if not filepath or not equations_sheet or not data_sheet:
+            raise Exception("Empty upload data inputs. Please provide valid inputs to file upload.")
+        else:
+            return True
+        return False
 
     def process_equations(self):
         self.lhs = self.equations_df['name']
