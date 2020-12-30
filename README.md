@@ -36,3 +36,28 @@ Context-free grammar CFG: G=(N, Σ, P, S), defined as follows:
 8. All variables defined are one-dimensional arrays. Here we represent using NumPy Arrays. 
        However these are extendable to TensorFlow arrays/matrices.
 
+## Steps to install
+Assumption: Python3.8.x is already installed.
+
+Clone the repository:
+```
+git clone https://github.com/sushmaakoju/parser.git
+```
+
+- Make sure you have command prompt from cloned repository:
+
+    ```
+    cd parser or
+    cd parser-master
+    ```
+
+- Install the requirements for running tests:
+
+    ```
+    pip install -r requirements.txt
+    ```
+- Run following tests:
+
+    ```
+    python -m test
+    ```
