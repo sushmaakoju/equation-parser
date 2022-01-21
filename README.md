@@ -1,4 +1,8 @@
 # A polynomial equation parser for one-dimensional to multi-dimensional valued arrays, matrices.
+
+### Code of conduct
+Resources were used for specific literature/code, it is provided in the respective implementation file. The code provided here is implicitly expected not to be replicated for homeworks, assignments or any other programming work. It is welcome to take inspiration, but it is implicitly expected to cite this resource if used for learning, inspiration purposes. Please refer a< href="https://github.com/sushmaakoju/parser/blob/master/CODE_OF_CONDUCT.md">code of conduct</a>.
+
 Implementation of polynomial equation parser algorithms in Python.
 This is a **proof-of-concept** using SymPy, NumPy and a string Parsing algorithm to assign symbols and create equations that can be evaluated by applying data from csv, excel files data-sources.
 
