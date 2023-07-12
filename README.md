@@ -9,7 +9,10 @@ We do not need to pre-define expressions, types and assign variables, since we w
 Also works over (derived from latest SymPy version): matrices, Tensorflow tensors and parses more complex equations in string format, using context-free grammar and abstract syntax trees and can be expanded, WLOG.
 
 ### Future work
-Can be expanded to variable degrees of polynomial equations but with approximations (since degrees >= 5 are unsolvable by radicals. Examples: irreducible/prime polynomials).
+Can be expanded to variable degrees of polynomial equations but with approximations (since degrees >= 5 are unsolvable by radicals. Examples: irreducible/prime polynomials). 
+
+### Differences between SymPy and NumPy
+SymPy supports symbolic computation is different from NumPy. π, sin, cosine in SymPy are symbolic representations of π, sine, cosine operations. π, sin, cosine in NumPy are numerical approximations of mathematical operations π, sine, cosine.
 
 ## Define Context-free grammar for polynomials equation:
 
