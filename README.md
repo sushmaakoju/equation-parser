@@ -16,11 +16,11 @@ Can be expanded to variable degrees of polynomial equations but with approximati
 
 ### Differences between SymPy and NumPy
 SymPy supports symbolic computation is different from NumPy. π, sin, cosine in SymPy are symbolic representations of π, sine, cosine operations. π, sin, cosine in NumPy are numerical approximations of mathematical operations π, sine, cosine.
-Everything is initially a "symbol" instance in SymPy until the corresponding symbol instance is created by defining a type and/or by data correspondence at the time of the symbol instance creation. Such abstraction holds options to adapt a variable "x" in an equation to a real number, integer, array, vector, matrix, or even a tensor. Symbol to data and datatype correspondence requires explicit mappings between symbols and data + datatypes when using SymPy. Until symbol instances are created, symbols are abstract representations of variables, functions or operations in SymPy, which is synonymous to terminal vs non-terminal symbols in formal representation of CFG grammar theory.
+Everything is initially a "symbol" instance in SymPy until the corresponding symbol instance is created by defining a type and/or by data correspondence at the time of the symbol instance creation. Such abstraction holds options to adapt a variable "x" in an equation to a real number, integer, array, vector, matrix, or even a tensor. Symbol to data and datatype correspondence requires explicit mappings between symbols and data + datatypes when using SymPy. Until symbol instances are created, symbols are abstract representations of variables, functions or operations in SymPy, which is synonymous to terminal vs non-terminal symbols in formal representation of Context-free grammar theory.
 
 The scripts under <a href="https://github.com/sushmaakoju/polynomial-equation-parser/tree/master/other_parsers_templates"> other_parsers_templates</a> have examples of how SymPy and NumPy evaluate and/or use Lambda Calculus to evaluate, parse and generate syntax trees. 
 
-## Define Context-free grammar for polynomials equation:
+## Define Context-free grammar for polynomial equation:
 
 Context-free grammar CFG: G=(N, Σ, P, S), defined as follows:
 
