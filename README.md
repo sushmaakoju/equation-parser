@@ -3,6 +3,9 @@
 ## Implementation of polynomial equation parser in Python (for various degrees of polynomial equations).
 This is a **proof-of-concept** implementation of polynomial equations in string format, using SymPy, NumPy software libraries and parsing strings to symbols and types. The goal is to assign symbols and create equations from string-based inputs that can be evaluated over data with csv, excel files as input sources. The equations and expressions are auto-instantiated and evaluated to types at runtime. Supports polynomial equations with linear, quadratic, cubic, quartic and higher degrees with recursive substitution as well as terms with squareroots.
 
+### Example
+In <a href="https://github.com/sushmaakoju/polynomial-equation-parser/tree/master/src">polynomial-equation-parser/src</a>, it takes set of equations each assigned to a capitalized variable. There can be equations that use the capitalized variables which should have been existing symbols in memory i.e. an equation of f = x1 + 4 and g = (f/3) + 25. If both equations are instantiated in SymPy, we would have f, x1, g in memory such that order is preserved i.e. to compute g, we first should have instantiated symbol f and x1 and generated corresponding expressions and "evaluated" these expressions first before instantiating symbol g, its corresponding expressions and evaluations.
+
 ### Note
 We do not need to pre-define expressions, types and assign variables, since we would not have information about type of equations, types of symbols that could be available in the input files. So this parser takes a string and detects an equation and its terminal and non-terminal symbols and auto-instantiates to types, functions that evaluate the true mathematical expressions. Expressions just need to be less recursive due to underlying limitations in SymPy, due to recursive substitutions, recursive evaluations since the Expression trees may need to preserve the order of evaluation under recursion. The types can be: integer, floats, vectors, int/float arrays, int/float tensors etc.
 
@@ -12,7 +15,9 @@ Also works over (derived from latest SymPy version): matrices, Tensorflow tensor
 Can be expanded to variable degrees of polynomial equations but with approximations (since degrees >= 5 are unsolvable by radicals. Examples: irreducible/prime polynomials). 
 
 ### Differences between SymPy and NumPy
-SymPy supports symbolic computation is different from NumPy. π, sin, cosine in SymPy are symbolic representations of π, sine, cosine operations. π, sin, cosine in NumPy are numerical approximations of mathematical operations π, sine, cosine.
+SymPy supports symbolic computation is different from NumPy. π, sin, cosine in SymPy are symbolic representations of π, sine, cosine operations. Everything is a initially an "symbol" instance in SymPy until the corresponding symbol instance is created by defining a type or by data correspondence at the time of symbol instance creation. Such abstraction holds options to adapt a variable "x" in an equation to be an real number, integer, vector, matrix, or even a tensor. Symbol to data and datatype correspondence requires explicit mappings between symbols and data + datatypes when using SymPy. Until symbol instances are created, symbols are abstract representations of variable, functions or operations in SymPy. π, sin, cosine in NumPy are numerical approximations of mathematical operations π, sine, cosine.
+
+The scripts under <a href="https://github.com/sushmaakoju/polynomial-equation-parser/tree/master/other_parsers_templates"> other_parsers_templates</a> have examples of how SymPy and NumPy evaluate and/or use Lambda Calculus to evaluate, parse and generate syntax trees. 
 
 ## Define Context-free grammar for polynomials equation:
 
