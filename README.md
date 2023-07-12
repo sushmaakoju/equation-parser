@@ -9,7 +9,7 @@ This is a **proof-of-concept** using SymPy, NumPy and a string Parsing algorithm
 #### Note
 We do not need to pre-define expressions, types and assign variables, since we would not have information about type of equations, types of symbols that could be available in the input files. So this parser takes a string and detects an equation and its terminal and non-terminal symbols and auto-instantiates to types, functions that evaluate the true mathematical expressions. Expressions just need to be less recursive due to underlying limitations in SymPy, due to recursive substitutions, recursive evaluations since the Expression trees may need to preserve the order of evaluation under recursion.
 
-Also works over (derived from latest SymPy version): add matrices, use Tensorflow inputs and parse more complex equations in string format, using context-free grammar and abstract syntax tree.
+Also works over (derived from latest SymPy version): matrices, Tensorflow tensors and parses more complex equations in string format, using context-free grammar and abstract syntax trees and can be expanded, WLOG.
 
 ## Define Context-free grammar for polynomials equation:
 
