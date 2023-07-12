@@ -7,7 +7,7 @@ Resources were used for specific literature/code, it is provided in the respecti
 This is a **proof-of-concept** using SymPy, NumPy and a string Parsing algorithm to assign symbols and create equations that can be evaluated over data with csv, excel files as input sources. The equations and expressions are auto-instantiated to types at runtime. 
 
 #### Note
-We do not need to pre-define expressions, types and assign variables, since we would not have information about type of equations, types of symbols that could be available in the input files. So this parser takes a string and detects an equation and its terminal and non-terminal symbols and auto-instantiates to types, functions that evaluate the true mathematical expressions.) Expressions just need to be less recursive due to underlying limitations in SymPy. 
+We do not need to pre-define expressions, types and assign variables, since we would not have information about type of equations, types of symbols that could be available in the input files. So this parser takes a string and detects an equation and its terminal and non-terminal symbols and auto-instantiates to types, functions that evaluate the true mathematical expressions. Expressions just need to be less recursive due to underlying limitations in SymPy, due to recursive substitutions, recursive evaluations since the Expression trees may need to preserve the order of evaluation under recursion.
 
 Also works over (derived from latest SymPy version): add matrices, use Tensorflow inputs and parse more complex equations in string format, using context-free grammar and abstract syntax tree.
 
